@@ -4,12 +4,12 @@ import 'package:weather_clean_architecture/features/feature_weather/domain/entit
 import 'package:weather_clean_architecture/features/feature_weather/domain/repository/weather_repository.dart';
 
 class GetCurrentWeatherUseCase extends UseCase<DataState<CurrentCityEntity>,String>{
-  final WeatherRepository repository;
-  GetCurrentWeatherUseCase(this.repository);
+  final WeatherRepository _repository;
+  GetCurrentWeatherUseCase(this._repository);
 
   @override
   Future<DataState<CurrentCityEntity>> call(String param) {
-    return repository.fetchCurrentWeatherData(param);
+    return _repository.fetchCurrentWeatherData(param);
   }
 
 

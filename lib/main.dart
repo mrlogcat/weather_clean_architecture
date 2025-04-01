@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_clean_architecture/core/widgets/main_wrapper.dart';
+import 'package:weather_clean_architecture/features/feature_weather/presentation/bloc/home_bloc.dart';
 import 'package:weather_clean_architecture/service_locator.dart';
 
 void main() async {
   await initializeLocator();
-  runApp(const MyApp());
+  runApp( MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -15,7 +17,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
      debugShowCheckedModeBanner: false,
-      home: MainWrapper(),
+      home: MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (_)=> locator<HomeBloc>())
+          ],
+          child: MainWrapper()),
     );
   }
 }
